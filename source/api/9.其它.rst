@@ -1,0 +1,157 @@
+第九节：其它
+============================================================
+
+Breakpoint_调试
+'''''''''''''''''''''''''''
+
+这是一个调试功能。
+
+它将停止策略执行，将程序设置为暂停模式并显示带有“文本”的对话框，还会显示断点编号“编号”。
+
+关闭此对话框后，策略将从下一个命令继续执行。
+
+
+**Delphi**
+
+.. code:: delphi
+
+	procedure Breakpoint(number: integer;text: string);	
+	
+	//示例
+	Breakpoint(2, 'This is debug window');
+
+
+**C++** 
+
+.. code:: cpp
+
+	void Breakpoint(int number,PChar text);
+	
+	//示例
+	Breakpoint(2, "This is debug window");
+
+
+------------
+
+
+Pause_暂停
+'''''''''''''''''''''''''''
+
+如果“Text”不是空字符串，则对话框窗口将显示此文本。
+
+
+**Delphi**
+
+.. code:: delphi
+
+	procedure Pause(Text: string);
+	
+	//示例
+	Pause('Intersection of 2 SMA');
+
+
+**C++** 
+
+.. code:: cpp
+
+	void Pause(PChar text = "");
+	
+	//示例
+	Pause("Intersection of 2 SMA");
+
+
+------------
+
+
+Resume_暂停后继续
+'''''''''''''''''''''''''''
+
+暂停后继续测试,请参见暂停测试。
+
+
+**Delphi**
+
+.. code:: delphi
+
+	procedure Resume;
+	
+	//示例
+	Resume;
+
+
+**C++** 
+
+.. code:: cpp
+
+	void Resume();
+	
+	//示例
+	Resume();
+
+
+------------
+
+GetInterfaceVersion_版本号
+'''''''''''''''''''''''''''
+
+**Delphi**
+
+.. code::delphi
+
+	procedure GetInterfaceVersion(var MajorValue: integer;var MinorValue: integer);
+
+	//示例
+	var
+	MajorValue, MinorValue: integer;
+
+	GetInterfaceVersion(MajorValue, MinorValue);
+	Print(format('Interface version: %d.%d', [MajorVersion, MinorVersion]));
+
+
+
+**C++** 
+
+.. code:: cpp
+
+	void GetInterfaceVersion(int& MajorValue,int& MinorValue);
+	
+	//示例
+	int MajorValue, MinorValue;
+	char buff[100];
+	
+	GetInterfaceVersion(MajorValue, MinorValue);
+	sprintf(buff, "Interface version: %d.%d", MajorVersion, MinorVersion);
+	Print(buff);
+
+
+------------
+
+
+TimeCurrent_获取当前时间
+'''''''''''''''''''''''''''
+
+获取当前时间（最后一个tick的时间）。
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function  TimeCurrent: TDateTime;
+	
+	//示例
+	if Hour(TimeCurrent) <> 10 then ...
+
+
+
+**C++** 
+
+.. code:: cpp
+
+	TDateTime TimeCurrent;
+	
+	//示例
+	if (HourOf(TimeCurrent) != 10) {...}
+
+
+

@@ -1,0 +1,60 @@
+CloseOrder 平仓
+=============================================
+
+
+如果订单关闭那么返回ture
+
+如果没有找到订单(比如已止损)则返回false
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function CloseOrder(
+	OrderHandle: integer
+	): boolean
+
+
+	
+	
+	
+**C++** >
+
+.. code:: cpp
+
+	bool CloseOrder(
+	int OrderHandle
+	);
+
+
+*参数说明*
+
+
+- OrderHandle
+
+   关闭订单的标识符
+
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+	CloseOrder(OrderHandle);
+
+
+
+**C++**
+
+.. code:: cpp
+
+	CloseOrder(OrderHandle);
+
+
+
+

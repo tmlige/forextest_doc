@@ -1,0 +1,64 @@
+DeleteOrder 删除订单
+=============================================
+
+
+删除订单,如果成功返回true,否则返回false
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function DeleteOrder(
+	OrderHandle: integer
+	): boolean;
+
+
+	
+	
+	
+**C++** >
+
+.. code:: cpp
+
+	function DeleteOrder(
+	OrderHandle: integer
+	): boolean;
+
+
+*参数说明*
+
+
+- OrderHandle
+
+   删除订单的标识符
+
+
+
+
+------------
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+	
+	DeleteOrder(OrderHandle);
+
+
+
+
+**C++**
+
+.. code:: cpp
+
+	DeleteOrder(OrderHandle);
+
+
+
+
+

@@ -1,0 +1,82 @@
+iTime_K线时间
+=============================================
+
+
+获取K线的"Time"值信息
+
+
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function iTime(
+	Symbol: string;
+	TimeFrame: integer;
+	index: integer
+	): double;
+
+
+	
+	
+**C++** 
+
+.. code:: cpp
+
+	double iTime(
+	PChar Symbol,
+	int TimeFrame,
+	int index
+	);
+
+
+*参数说明*
+
+
+- Symbol
+
+   标的名
+
+
+- TimeFrame
+
+   时间框架
+
+- index
+
+   索引
+
+
+
+
+
+------------
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+	var
+	o: double;	 
+
+	o := iTime('USDJPY', 15, 10);
+
+
+
+
+
+**C++**
+
+.. code:: cpp
+
+	double o = iTime("USDJPY", 15, 10);
+
+
+
+

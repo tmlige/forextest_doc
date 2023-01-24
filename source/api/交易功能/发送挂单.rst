@@ -1,0 +1,115 @@
+SendPendingOrder 发送挂单
+=============================================
+
+
+发送挂单。
+
+如果发送成功,则函数返回ture和OrderHandle,否则返回false和OrderHandle = -1
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function SendPendingOrder(
+	Symbol: string;
+	OperationType: TInstantOrderType;
+	LotSize: double;
+	StopLoss: double;
+	TakeProfit: double;
+	Comment: string;
+	MagicNumber: integer;
+	var OrderHandle: integer
+	): boolean;
+
+	
+	
+	
+**C++** >
+
+.. code:: cpp
+
+	bool SendPendingOrder(
+	PChar Symbol,
+	TInstantOrderType OperationType,
+	double LotSize,
+	double StopLoss,
+	double TakeProfit,
+	PChar Comment,
+	int MagicNumber,
+	int& OrderHandle
+	);
+
+
+*参数说明*
+
+
+- Symbol
+
+   标的名
+
+- OperationType
+
+	订单类型(op_Buy, op_Sell)
+	
+- LotSize
+
+	手数	
+	
+- StopLoss
+
+	止损价
+		
+- TakeProfit
+
+	止赢价	
+	
+- Comment
+
+	订单备注
+		
+- MagicNumber
+
+	可选,一般用来标识订单
+		
+- OrderHandle
+
+	返回订单标识
+	
+
+
+
+------------
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+	var
+	OrderHandle: integer;	 
+
+	if SendPendingOrder('USDCAD', op_Buy, 0.2, 1.2200, 1.2425, '', 0, OrderHandle) = true then
+	begin
+	   ...
+	end;
+
+
+
+**C++**
+
+.. code:: cpp
+
+	int OrderHandle;	 
+
+	if (SendPendingOrder("USDCAD", op_Buy, 0.2, 1.2200, 1.2425, "", 0, OrderHandle) == true)
+	{
+	  ...
+	}
+
+
+

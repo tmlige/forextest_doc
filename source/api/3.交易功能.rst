@@ -1,0 +1,198 @@
+第三节：交易功能
+============================================================
+
+
+
+
+
+SendInstantOrder 发送即时订单
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. note:: 发送即时订单。
+    如果订单被执行，则函数返回“true”和订单标识符, 否则返回“false”和OrderHandle = -1。
+
+**Delphi**
+
+.. code:: delphi
+
+ function SendInstantOrder(
+ Symbol: string;
+ OperationType: TInstantOrderType;
+ LotSize: double;
+ StopLoss: double;
+ TakeProfit: double;
+ Comment: string;
+ MagicNumber: integer;
+ var OrderHandle: integer
+ ): boolean;
+
+ //示例代码
+ var
+ OrderHandle: integer;
+ if SendInstantOrder('USDCAD', op_Buy, 0.2, 1.2200, 1.2425, '', 0, OrderHandle) = true then
+ begin
+   ...
+ end;
+
+**C++** >
+
+.. code:: cpp
+
+    bool SendInstantOrder(
+    PChar Symbol,
+    TInstantOrderType OperationType,
+    double LotSize,
+    double StopLoss,
+    double TakeProfit,
+    PChar Comment,
+    int MagicNumber,
+    int& OrderHandle
+    );
+
+    //示例代码
+    int OrderHandle;
+    if (SendInstantOrder("USDCAD", op_Buy, 0.2, 1.2200, 1.2425, "", 0, OrderHandle) == true)
+    {
+      ...
+    }
+
+SendPendingOrder 发送挂单
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. note:: 发送挂单。
+    如果订单被执行，则函数返回“true”和订单标识符, 否则返回“false”和OrderHandle = -1。
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+    var
+    OrderHandle: integer;
+
+    if SendPendingOrder('USDCAD', op_Buy, 0.2, 1.2200, 1.2425, '', 0, OrderHandle) = true then
+    begin
+       ...
+    end;
+
+
+
+**C++**
+
+.. code:: cpp
+
+    int OrderHandle;
+
+    if (SendPendingOrder("USDCAD", op_Buy, 0.2, 1.2200, 1.2425, "", 0, OrderHandle) == true)
+    {
+      ...
+    }
+
+ModifyOrder 修改订单
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. note:: 修改已存在的订单,如果修改成功返回ture否则返回false
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+    if not(ModifyOrder(OrderHandle, 1.2250, 1.2400, 1.2200)) then ...
+
+
+
+**C++**
+
+.. code:: cpp
+
+    if (!(ModifyOrder(OrderHandle, 1.2250, 1.2400, 1.2200))) {...}
+
+DeleteOrder 删除订单
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.. note:: *参数说明*
+
+    - OrderHandle
+
+       删除订单的标识符
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+    DeleteOrder(OrderHandle);
+
+**C++**
+
+.. code:: cpp
+
+    DeleteOrder(OrderHandle);
+
+CloseOrder 平仓
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. note:: 如果订单关闭那么返回ture,如果没有找到订单(比如已止损)则返回false
+
+   *参数说明*
+
+    - OrderHandle
+
+       关闭订单的标识符
+
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+    CloseOrder(OrderHandle);
+
+
+
+**C++**
+
+.. code:: cpp
+
+    CloseOrder(OrderHandle);
+
+CloseOrderPartial 平仓部分仓位
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.. note:: 平仓一部分,如果成功则返回true, 如果没有找到订单(比如已止损,或手数小于平仓手数),则返回false
+
+   *参数说明*
+
+    - OrderHandle
+
+       关闭订单的标识符
+
+    - LotSize
+
+       平仓手数
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+    CloseOrder(OrderHandle, 0.3);
+
+
+
+**C++**
+
+.. code:: cpp
+
+    CloseOrder(OrderHandle, 0.3);

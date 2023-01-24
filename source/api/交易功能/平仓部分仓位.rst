@@ -1,0 +1,72 @@
+CloseOrderPartial 平仓部分仓位
+=============================================
+
+
+平仓一部分,如果成功则返回true
+
+如果没有找到订单(比如已止损,或手数小于平仓手数),则返回false
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function CloseOrderPartial(
+	OrderHandle: integer;
+	LotSize: double
+	): boolean;
+
+
+	
+	
+	
+**C++** >
+
+.. code:: cpp
+
+	bool CloseOrderPartial(
+	int OrderHandle,
+	double LotSize
+	);
+
+
+
+*参数说明*
+
+
+- OrderHandle
+
+   关闭订单的标识符
+
+- LotSize
+
+   平仓手数
+
+
+
+
+------------
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+	CloseOrder(OrderHandle, 0.3);
+
+
+
+**C++**
+
+.. code:: cpp
+
+	CloseOrder(OrderHandle, 0.3);
+
+
+
+
+

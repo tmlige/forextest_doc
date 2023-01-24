@@ -1,0 +1,31 @@
+第一节：策略配置
+============================================================
+
+.. note:: 用于在软件内加载完以后,显示名称和简短说明
+
+   -  StrategyShortName: 策略名称
+   -  StrategyDescription: 策略描述
+
+
+**Delphi**
+
+.. code:: delphi
+
+	procedure StrategyShortName(name: string);
+	procedure StrategyDescription(desc: string);
+	
+	//示例:
+	StrategyShortName('Regression channel');
+	StrategyDescription('Strategy based on MA ver 1.0');
+	
+**C++** >
+
+.. code:: cpp
+
+    void StrategyShortName(PChar name);
+    void StrategyDescription(PChar desc);
+
+    //示例:
+    StrategyShortName("Regression channel");
+    StrategyDescription("Strategy based on MA ver 1.0");
+

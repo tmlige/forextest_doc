@@ -1,0 +1,79 @@
+ModifyOrder 修改订单
+=============================================
+
+
+修改已存在的订单,如果修改成功返回ture否则返回false
+
+
+
+**Delphi**
+
+.. code:: delphi
+
+	function ModifyOrder(
+	OrderHandle: integer;
+	NewPrice: double;
+	StopLoss: double;
+	TakeProfit: double
+	): boolean;
+
+
+	
+	
+	
+**C++** >
+
+.. code:: cpp
+
+	bool ModifyOrder(
+	int OrderHandle,
+	double NewPrice,
+	double StopLoss,
+	double TakeProfit
+	);
+
+
+*参数说明*
+
+
+- OrderHandle
+
+   订单标识符
+
+- NewPrice
+
+	新价格
+	
+- StopLoss
+
+	新止损	
+	
+- TakeProfit
+
+	新止赢
+		
+
+
+
+------------
+
+
+*代码示例*
+
+
+**Delphi**
+
+.. code:: delphi
+
+	if not(ModifyOrder(OrderHandle, 1.2250, 1.2400, 1.2200)) then ...
+
+
+
+**C++**
+
+.. code:: cpp
+
+	if (!(ModifyOrder(OrderHandle, 1.2250, 1.2400, 1.2200))) {...}
+
+
+

@@ -1,0 +1,49 @@
+第二节：定义外部参数
+==============================
+
+.. note::
+    外部参数一般写在策略初始化中,
+    用于策略中可以自定义输入的参数,如选择交易标的等
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :numbered: 1
+   
+   ../api/定义外部参数/*
+   
+
+
+如下图所示
+
+.. image:: /1.png
+
+-  RegOption:注册外部参数。
+
+-  AddSeparator:分割小标题(可有可无)
+
+-  SetOptionRange:设置输入范围
+
+-  SetOptionDigits:设置输入小数点位数
+
+
+*delphi 代码示例*
+
+.. code:: delphi
+
+
+	procedure InitStrategy; stdcall;
+
+	begin
+	  StrategyShortName('v4.1_1'); //策略标题
+	  StrategyDescription(DateTimeToStr(Now())); //策略简短说明 这里用当前时间代替
+
+	  AddSeparator('基础参数');//小标题
+	  RegOption('标的', ot_Currency, currency.name); //选项一
+	  ReplaceStr(currency.name, 'CF'); //默认参数
+
+	  RegOption('默认手数', ot_Double, lot_size); //选项二
+	  RegOption('止损价格倍数', ot_Double, stop_bl); //选项三
+	end;
+
+	 
