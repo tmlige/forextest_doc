@@ -1,11 +1,159 @@
 第七节：指标功能
 ============================================================
 
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :numbered: 1
+CreateIndicator_创建指标
+'''''''''''''''''''''''''''
+
+.. note::
+    这个函数应该仅在ResetStrategy重启时被调用!!!
+
+    获取指标句柄后应该将其存储在全局变量中,与GetIndicatorValue函数一起使用来获取指标的值.
+
+    此功能将指标置于选定货币时间范围的图表上。如果该指标已存在，则无需创建新指标即可使用。该策略将在执行期间锁定该指标，
+    因此您将无法手动将其从图表中删除。但是断开连接后它会被解锁。
+
+**Delphi**
+
+.. code:: delphi
+
+    function CreateIndicator(Symbol: string;TimeFrame: integer;	IndicatorName: string;Parameters: string): integer;
+
+    //示例代码
+    var
+    IndMACD: integer;
+    IndMA: integer;
+
+    {-----Reset strategy---------------------------------------------------------}
+    procedure ResetStrategy; stdcall;
+    begin
+    IndMACD := CreateIndicator('EURUSD', 15, 'MACD', '8;20;12;Close');
+    IndMA := CreateIndicator('USDJPY', 60, 'MovingAverage',
+      format('%d;0;0;%s;Close', [MATrendPeriod, StrMAType(ma_EMA)]));
+    end;
 
 
-   ../api/指标功能/*
+**C++**
+
+.. code:: cpp
+
+    int CreateIndicator(PChar Symbol, int TimeFrame, PChar IndicatorName, PChar parameters);
+
+    //示例代码
+    int IndMACD;
+    int IndMA;
+
+    {-----Reset strategy---------------------------------------------------------}
+    EXPORT void __stdcall  ResetStrategy()
+    {
+    IndMACD = CreateIndicator("EURUSD", 15, "MACD", "8;20;12;Close");
+
+    char buff[1000];
+    sprintf(buff, "%d;0;0;%s;Close", MATrendPeriod, StrMAType(ma_EMA));
+    IndMA = CreateIndicator("USDJPY", 60, "MovingAverage", buff);
+    }
+
+*参数说明*
+
+
+- Symbol 要应用指标的标的
+
+- TimeFrame 时间框架
+
+- IndicatorName 指标名称
+
+- Parameters  指标参数字符串
+
+---------------
+
+
+GetIndicatorValue_获取指标值
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.. note::
+   访问指标的值,比如ma最新值
+**Delphi**
+
+.. code:: delphi
+
+   function GetIndicatorValue(IndicatorHandle: integer; index: integer; BufferIndex: integer): double;
+
+   //示例代码
+   var
+   IndMACD: integer;
+   MacdCurrent: double;
+   MacdPrevious: double;
+
+   MacdCurrent := GetIndicatorValue(IndMACD, 0, 2);
+   MacdPrevious := GetIndicatorValue(IndMACD, 1, 2);
+
+
+**C++**
+
+.. code:: cpp
+
+    double GetIndicatorValue(int IndicatorHandle,int index,int BufferIndex);
+
+    //示例代码
+    int IndMACD, MacdCurrent, MacdPrevious;
+
+    MacdCurrent = GetIndicatorValue(IndMACD, 0, 2);
+    MacdPrevious = GetIndicatorValue(IndMACD, 1, 2);
+
+
+*参数说明*
+
+
+- Symbol   要应用指标的标的
+
+- index   索引
+
+- BufferIndex   指标内部的索引
+
+---------------
+
+
+SetIndicatorBuffStyle_指标样式
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. note::
+   为使用CreateIndicator 创建的指标设置样式（线条样式、粗细、颜色）。
+
+
+**Delphi**
+
+.. code:: delphi
+
+    procedure SetIndicatorBuffStyle(IndicatorHandle: integer;BuffIndex: integer; _style: TPenStyle;	width: integer; color: TColor);
+
+    //示例代码
+    var
+    IndMACD: integer;
+
+    SetIndicatorBuffStyle(IndMACD, 0, psSolid, 1, clYellow);
+    SetIndicatorBuffStyle(IndMACD, 1, psDot, 1, clBlue);
+
+**C++**
+
+.. code:: cpp
+
+    void SetIndicatorBuffStyle(int IndicatorHandle,	int BuffIndex,TPenStyle _style,	int width,TColor color);
+
+    //示例代码
+    int IndMACD;
+
+    SetIndicatorBuffStyle(IndMACD, 0, psSolid, 1, clYellow);
+    SetIndicatorBuffStyle(IndMACD, 1, psDot, 1, clBlue);
+
+*参数说明*
+
+
+- IndicatorHandle   指标句柄
+
+- BufferIndex   索引
+
+- _style   样式
+
+- width   宽度
+
+- color   颜色
+
 

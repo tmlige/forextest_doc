@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'FT API文档'
-copyright = '2023, li'
+copyright = '2023'
 author = 'li'
 release = 'v'
 
